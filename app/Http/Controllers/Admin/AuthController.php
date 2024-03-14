@@ -35,20 +35,20 @@ class AuthController extends Controller
       $credential = $request->only('username', 'password');
       
       if (Auth::attempt($credential)) {
-       
-        $pin = rand(11111,999999);
+        // $pin = rand(11111,999999);
         $user = User::where('id', Auth::user()->id)->first();
-        $user->status = '0';
-        $user->otp = $pin;
+        // $user->status = '0';
+        // $user->otp = $pin;
+         $user->status = '1';
         $user->save();
-        $message = "$user->name,আপনার পিন নম্বর $pin";
-        $company = CompanyProfile::first();
-         $phone_6 = $company->phone_6;
-        $phone_7 = $company->phone_7;
-        $this->send_sms($phone_6, $message);
-        $this->send_sms($phone_7, $message);
-        // return redirect()->intended('/dashboard');
-       return redirect()->route('login.otp');
+        // $message = "$user->name,আপনার পিন নম্বর $pin";
+        // // $company = CompanyProfile::first();
+        // $phone_6 = $company->phone_6;
+        // $phone_7 = $company->phone_7;
+        // $this->send_sms($phone_6, $message);
+        // $this->send_sms($phone_7, $message);
+        return redirect()->route('admin.index');
+        //  return redirect()->route('login.otp');
        
 
       } else {

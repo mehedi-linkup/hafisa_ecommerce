@@ -38,9 +38,9 @@ class CartController extends Controller
            
     }
 
-    public function addToCartAjax(Request $request,$id)
+    public function addToCartAjax(Request $request, $id)
     {
-       $product = Product::where('id',$id)->first();
+       $product = Product::where('id', $id)->first();
        
        $total_item = \Cart::getContent()->count();
        if($total_item <100){
@@ -67,9 +67,8 @@ class CartController extends Controller
 
     public function addToCartAjaxUpdate(Request $request,$id)
     {
-
-        foreach(\Cart::getContent() as $item){
-            $product = Product::with('inventory')->where('id',$id)->first();
+        foreach(\Cart::getContent() as $item) {
+            $product = Product::with('inventory')->where('id', $id)->first();
             $stock = $product->inventory->purchage;
             $total_item = \Cart::getContent()->count();
             if($total_item <100){

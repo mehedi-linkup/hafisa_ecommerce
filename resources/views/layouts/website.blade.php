@@ -12,7 +12,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/animate.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/all.min.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('website/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/slider.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/menu.css') }}">
@@ -43,6 +45,62 @@
     <script src="{{ asset('website/js/main.js') }}"></script>
     {{-- toster --}}
     <script src="{{ asset('website/js/toastr.min.js') }}"></script>
+    <script>
+
+$('.owl-carousel').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: true,
+  navText: [
+    "<i class='fa fa-caret-left'></i>",
+    "<i class='fa fa-caret-right'></i>"
+  ],
+  autoplay: true,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+    600: {
+      items: 1
+    },
+    1000: {
+      items: 1
+    }
+  }
+})
+        $(".slider-active").owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            autoplay: true,
+            items: 1,
+            autoplayTimeout: 10000,
+            navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
+          
+            lazyLoad: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                320: {
+                    items: 1
+                },
+                522: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                },
+                1024: {
+                    items: 1
+                }
+            }
+        });
+    </script>
     <script>
         $('img').on('load', function(){
             $('img').css('background','none');
@@ -181,45 +239,13 @@
     </script>
     <script>
         var typed6 = new Typed('#typed', {
-            strings: ['Zenevia Express Shop'],
+            strings: ["{{ $content->company_name }}"],
             typeSpeed: 100,
             backSpeed: 100,
             loop: true
         });
     </script>
-    <script>
-        $(".slider-active").owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            autoplay: true,
-            items: 1,
-            autoplayTimeout: 10000,
-            navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
-          
-            lazyLoad: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                320: {
-                    items: 1
-                },
-                522: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
-                },
-                1024: {
-                    items: 1
-                }
-            }
-        });
-    </script>
+  
     <script>
         $('.arrivel-new').owlCarousel({
 
@@ -317,6 +343,7 @@
          //        $(".side-navbar").hide('slow');
          //    })
          // }
+        
          $('.left-sidebar').on('click',function(){
             $(".side-navbar").show();
          })
@@ -326,6 +353,8 @@
             }).on('click', '#nav_accordion', function(e) {
                     e.stopPropagation();
                 });
+         } else {
+            $(".side-navbar").show();
          }
 
         
@@ -345,7 +374,7 @@
  
     <script>
         // ajax card add
-    function addToCard(id){
+    function addToCard(id) {
         console.log(id);
         var url = "/cart-add/"+id;
         $.ajax({
@@ -367,34 +396,34 @@
    
 // ajax card delete
 function deleteCard(id){
-  var url = "/remove/"+id;
-  console.log(url);
-  $.ajax({
-            url:url,
-            type:"get",
-            dataType: "json",
-            success:function(res){
-                cartAllData();
-            }
-        })
-}
+    let r = confirm('Are you sure you want to remove?');
+    if(r) {
+        var url = "/remove/"+id;
+        console.log(url);
+        $.ajax({
+                    url:url,
+                type:"get",
+                dataType: "json",
+                success:function(res){
+                    cartAllData();
+                }
+            })
+    }
+    }
 
 // ajax card  all data show
       function cartAllData(){
           var cartTotal = $('#cartTotal').val();
-          console.log(cartTotal);
+        //   console.log(cartTotal);
         $.ajax({
                 url:"{{route('cart.alldata')}}",
                 type:"get",
                 dataType: "json",
-                success:function(res){
-                    console.log(res);
-                    
+                success:function(res) {                    
                     var data = "";
                     $.each(res,function(key,value){
                         var url = "/product-details/"+value.attributes.slug;
-                        console.log(url)
-                        data = data + '<li class="d-flex py-2"><span class="d-flex my-auto"><span id="decrement-minus" class="minus-decrement btn btn-sm minus ml-0" onclick="decrement('+value.id+')"><i class="fas fa-minus"></i></span><span class="value mx-1 my-auto"> '+value.quantity+'</span><span class="plus increment-plus mx-1 btn  btn-sm" onclick="increment('+value.id+')"><i class="fas fa-plus"></i></span></span><span class="cart-img my-auto"> <img src="/uploads/product/'+value.attributes.image+'" alt=""></span><span class="px-2">'+value.name+'</span><span>'+value.quantity+'*'+value.price+' ='+value.quantity*value.price+'</span></a></br><span class="ms-auto del" onclick="deleteCard('+value.id+') "> <i class="fas fa-times del"></i></span></li>'
+                        data = data + '<li class="d-flex py-2" style="border-bottom:1px solid #ddd;"><span class="d-flex my-auto align-items-center"><span class="cart-img my-auto"> <img src="/uploads/product/'+value.attributes.image+'" alt=""></span><span class="px-2">'+value.name+'</span><span>'+value.quantity+' X '+value.price+' ='+value.price * value.quantity+'</span><span id="decrement-minus" class="minus-decrement btn btn-sm minus ml-0" onclick="decrement('+value.id+')"><i class="fas fa-minus"></i></span><span class="value mx-1 my-auto"> '+value.quantity+'</span><span class="plus increment-plus mx-1 btn  btn-sm" onclick="increment('+value.id+')"><i class="fas fa-plus"></i></span></span></a></br><span class="ms-auto del" onclick="deleteCard('+value.id+') "> <i class="fas fa-trash-alt"></i></span></li>'
 
                     })
                     data = data + '<li class="d-flex"><span class="ms-auto"> SubTotal:</span></span> <span class="text-end fw-bolder total_amount" id="total_amount"></span></li>'
@@ -452,6 +481,9 @@ function deleteCard(id){
                 data: quantity,
                 success:function(res){
                     if(res.error){
+                        console.log("first error");
+                        let newNewVal = parseInt(newVal) - 1;
+                        $(qtyField).find(".qty").val(newNewVal);
                         toastr.error(res.error);
                     }
                     cartAllData();
@@ -460,7 +492,7 @@ function deleteCard(id){
                     $('#total_amount').text(res.total_amount);
                 },
                 error:function(error){
-                    toastr.error('Stock not available');
+                    toastr.error('Stock not available'); 
                 }
 
            })
@@ -487,7 +519,7 @@ function deleteCard(id){
 
 	
 	}
-	decrement();
+	// decrement();
 
     function increment(id){
           let url = "/cart/increment/"+id;
@@ -510,7 +542,7 @@ function deleteCard(id){
 
 	
 	}
-	increment();
+	// increment();
 
     </script>
   <script src="{{asset('website/js/bootstrap3-typeahead.min.js')}}" ></script>
@@ -550,15 +582,15 @@ function deleteCard(id){
 </script>
 <script>
     const togglePassword = document.querySelector('#togglePassword');
-const password = document.querySelector('#id_password');
+    const password = document.querySelector('#id_password');
 
-togglePassword.addEventListener('click', function (e) {
-// toggle the type attribute
-const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-password.setAttribute('type', type);
-// toggle the eye slash icon
-this.classList.toggle('fa-eye-slash');
-});
+    if(togglePassword) {
+        togglePassword.addEventListener('click', function (e) {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
 </script>
 
 
@@ -604,6 +636,17 @@ this.classList.toggle('fa-eye-slash');
         images.forEach((img) => {
         imgObserver.observe(img);
         });
+</script>
+
+<script>
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 1){  
+            $('#mainHeader').addClass("shadow");
+        }
+        else{
+            $('#mainHeader').removeClass("shadow");
+        }
+    });
 </script>
 
 {{-- <script>

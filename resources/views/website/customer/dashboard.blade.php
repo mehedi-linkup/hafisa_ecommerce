@@ -84,7 +84,7 @@
                             @method('put')
                         <div class="row pt-3">
                             
-                            <div class="col-md-6">
+                            <div class="offset-md-3 col-md-6">
                                 <div class="form-group px-3 py-1">
                                     <label for="" class="p-1" >Current Password<span class="text-danger ">*</span></label>
                                     <input type="password" name="currentPass" class="form-control px-2"  placeholder="Enter Current Password *">

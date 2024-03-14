@@ -67,8 +67,8 @@ class CustomerController extends Controller
 
     public function customerStore(Request $request)
     {
-        // dd($request->all());
-
+        //  dd($request->all());
+        //  return;
         $request->validate([
             'name' => 'required|min:3|max:100',
             'phone' => 'required|unique:customers|regex:/^01[13-9][\d]{8}$/|min:11',
@@ -79,7 +79,7 @@ class CustomerController extends Controller
             'ip_address' => 'max:15'
         ]);
         $otp = rand(1000,9999);
-        $message = "জেনিভিয়া এক্সপ্রেস শপ অ্যাকাউন্ট রেজিস্টার পিন $otp .দয়া করে এটা শেয়ার করবেন না।";
+        $message = "হাসিফা শপ অ্যাকাউন্ট রেজিস্টার পিন $otp .দয়া করে এটা শেয়ার করবেন না।";
         $customer = new Customer();
         $code = 'C' . $this->generateCode('Customer');
         $customer->name = $request->name;
@@ -96,13 +96,26 @@ class CustomerController extends Controller
         $customer->save_by = 0;
         $customer->otp = $otp;
         $customer->updated_by = 0;
+        $customer->isVerified = '1';
         $customer->save();
-        $phone = $customer->phone;
-        if($customer){
-            $this->send_sms($phone, $message);
-            Session::put('phone', $phone);
-            return redirect()->route('customer.otp')->with('success','PIN sent successfully your mobile number.Don`t refresh the page');
+        // $phone = $customer->phone;
+        // if($customer){
+        //     $this->send_sms($phone, $message);
+        //     Session::put('phone', $phone);
+        //     return redirect()->route('customer.otp')->with('success','PIN sent successfully your mobile number.Don`t refresh the page');
+        // }
+
+        // $customer->save();
+        $credential = $request->only('password');
+        $credential['phone'] = $request->phone;
+          
+        if (Auth::guard('customer')->attempt($credential)) {
+            session()->flash('message', ' Successfully created your account  !');
+            return redirect()->route('customer.panel');
+        } else {
+            return back()->with('error','Unsuccessfull !');
         }
+
     }
     public function acccountOpenOtp(){
         return view('website.customer.register_otp');
@@ -110,7 +123,7 @@ class CustomerController extends Controller
     public function acccountOpenOtpStore(Request $request){
        $phone = $request->phone;
        $otp = $request->otp;
-       $customer = Customer::where('phone',$phone)->where('otp',$otp)->first();
+       $customer = Customer::where('phone', $phone)->where('otp', $otp)->first();
        if($customer){
         $customer->isVerified = '1';
          $customer->save();
@@ -186,8 +199,6 @@ class CustomerController extends Controller
 
     public function customerPasswordUpdate(Request $request)
     {
-     
-      
         $request->validate([
             'currentPass' => 'required',
             'password' => 'required|min:4|same:confirmed',
@@ -226,7 +237,6 @@ class CustomerController extends Controller
 
     public function customerPanel()
     {
-
         if (Auth::guard('customer')->check()) {
             $order = Order::with('orderDetails')->where('customer_id', Auth::guard('customer')->user()->id)->latest()->get();
             return view('website.customer.dashboard', compact('order'));

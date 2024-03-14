@@ -108,12 +108,12 @@
                         @endif
                     @endif
                 @endforeach
-                    <a class="nav-link {{($prefix == 'product')?'':'collapsed'}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="{{($prefix == 'product')?'true':'false'}}" aria-controls="collapseLayouts">
+                    <a class="nav-link {{($prefix == '/product')?'':'collapsed'}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="{{($prefix == 'product')?'true':'false'}}" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
                             Product Info
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                <div class="collapse {{($prefix == 'product')?'collapse show':''}}" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{($prefix == '/product')?'collapse show':''}}" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         
                         @foreach ($permisson as $p)

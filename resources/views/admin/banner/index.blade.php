@@ -78,9 +78,10 @@
                                     <thead class="text-center bg-light">
                                         <tr>
                                             <th> Title</th>
-                                            <th>Offer Name</th>
+                                            {{-- <th>Offer Name</th>
                                             <th>Offer Link</th>
-                                            <th>details</th>
+                                            <th>details</th> --}}
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -161,9 +162,10 @@ function readURL(input) {
                     $.each(res,function(key,value){
                         data = data + '<tr>'
                         data = data + '<td>'+value.title+'</td>'
-                        data = data + '<td>'+value.offer_name+'</td>'
-                        data = data + '<td>'+value.offer_link+'</td>'
-                        data = data + '<td>'+value.short_details+'</td>'
+                       // data = data + '<td>'+value.offer_name+'</td>'
+                       // data = data + '<td>'+value.offer_link+'</td>'
+                        // data = data + '<td>'+value.short_details+'</td>'
+                        data = data + '<td><img class="w-100" src="'+window.location.origin +'/'+ value.image+'"></td>'
                         data = data + '<td class="text-nowrap text-center">'
                         data = data + '<a class="btn btn-edit btn-info btn-sm " id="createSubmit" onclick="editData('+value.id+')"><i class="fas fa-edit"></i></a>'
                         data = data + '<a class="btn btn-delete btn-danger btn-sm" onclick="deleteData('+value.id+')"><i class="fas fa-trash"></i></a>'

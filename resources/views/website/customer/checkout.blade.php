@@ -229,6 +229,12 @@ input {
     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
 }
 
+.ui-datepicker {
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
 @keyframes stroke {
     100% {
         stroke-dashoffset: 0

@@ -12,7 +12,7 @@
             </div>
             
             <div class="col-xl-3 col-md-6 " >
-                <div class="card mb-3 dashboard-card " style="background: linear-gradient(#e66465, #9198e5)">
+                <div class="card mb-3 dashboard-card " style="background: #b0d9ff">
                     <a href="{{route('order.index')}}" class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fas fa-spinner fa-2x"></i> <span class="count">{{ $pending }}</span>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#faf0fd, #9198e5)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <a href="{{route('order.onProcess')}}" class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fas fa-project-diagram fa-2x"></i> <span class="count">{{ $process }}</span>
@@ -36,7 +36,7 @@
           
             
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#faf0fd,#F76A9D)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <a href="{{route('order.way')}}" class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fas fa-road fa-2x"></i> <span class="count">{{ $way }}</span>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#DD00B0,#F76A9D)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <a class="card-body mx-auto" href="{{route('order.delivary')}}">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fas fa-truck-loading fa-2x"></i> <span class="count">{{ $delivered }}</span>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#003B56,#F76A9D)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <a href="{{route('sales.report')}}" class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fas fa-balance-scale-left fa-2x"></i>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#F4B019,#F76A9D)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <a href="{{ route('product.index') }}" class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fab fa-product-hunt fa-2x"></i>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#faf0fd,#F76A9D)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <a href="{{ route('profile.edit') }}" class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="far fa-money-bill-alt fa-2x"></i>
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card mb-3 dashboard-card" style="background: linear-gradient(#54BFBD,#F76A9D)">
+                <div class="card mb-3 dashboard-card" style="background: #b0d9ff">
                     <div class="card-body mx-auto">
                         <div class=" d-flex justify-content-center align-items-center">
                             <i class="fa fa-sign-out-alt fa-2x"></i>

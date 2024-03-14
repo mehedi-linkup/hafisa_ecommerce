@@ -6,7 +6,7 @@
     <div class="heading-title p-2 my-2">
         <span class="my-3 heading "><i class="fas fa-home"></i> <a class="" href="{{route('admin.index')}}">Home</a> >Offer</span>
     </div>
-    <form action="{{route('offer.update',$offer)}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('offer.update', $offer) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-md-6">

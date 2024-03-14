@@ -48,10 +48,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => ['required', 'max:100', Rule::unique('categories')->whereNull('deleted_at')],
 
-            'image' => 'required|max:1000||Image|mimes:jpg,png,jpeg,bmp',
+            'image' => 'required|max:1000||Image|mimes:jpg,png,jpeg,bmp,webp',
             'ip_address' => 'max:15'
         ]);
         $image = $request->file('image');

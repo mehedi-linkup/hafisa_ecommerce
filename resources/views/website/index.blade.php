@@ -3,96 +3,105 @@
 <style>
     @media screen and ( max-width: 767px ){
         .single-slide {
-    height: 180px;
-    width: 100%;
-}
+            height: 180px;
+            width: 100%;
+        }
+    }
+
+    .carousel-wrap {
+        width: 100%;
+        position: relative;
+    }
+
+    /* fix blank or flashing items on carousel */
+    .owl-carousel .item {
+        position: relative;
+        z-index: 100; 
+        -webkit-backface-visibility: hidden; 
+    }
+
+    /* end fix */
+    .owl-carousel .owl-nav button {
+        margin-top: -26px;
+        position: absolute;
+        top: 50%;
+        color: #ffffff40 !important
+    }
+
+    .owl-carousel .owl-nav i {
+        font-size: 52px;
+    }
+
+    .owl-carousel .owl-nav .owl-prev {
+        left: 0px;
+    }
+
+    .owl-carousel .owl-nav .owl-next {
+        right: 0px;
+    }
+    .owl-carousel .owl-carousel .owl-item img {
+        border-radius: unset;
     }
 </style>
 <section>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="slider-area">
-                    <div class="slider-active owl-carousel owl-loaded owl-drag">
-                        <div class="owl-stage-outer ">
-                            <div class="owl-stage">
-                                @foreach ($banner as $item)
-
-                                <div class="owl-item ">
-                                    <div class=" single-slide  align-center-left animation-style-02 slider-background bg-1" style="background-image:url({{asset($item->image)}}) " loading="lazy">
-                                        <div class="slider-progress"></div>
-                                        <div class="slider-content position-relative">
-                                            {{-- <div class="text-content">
-                                                <h5 class="text-shadow">Sale Offer <span>{{$item->offer_name}}</span> This Week</h5>
-                                                <h2 class="text-shadow">{!!$item->short_details!!}</h2>
-                                                <h3 class="text-shadow">{{$item->title}}</h3>
-                                                <div class="default-btn slide-btn"> <a class="links"
-                                                        href="{{$item->offer_link}}" target="_blank">Shopping
-                                                        Now</a>
-                                                </div>
-                                            </div> --}}
-                                           
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                                
-                            </div>
-                        </div>
+                <div class="carousel-wrap">
+                    <div class="owl-carousel">
+                    @foreach ($banner as $item)
+                      <div class="item"><img src="{{asset($item->image)}}" style="border-radius:unset"></div>
+                      @endforeach
                     </div>
                 </div>
             </div>
-            <!-- Slider Area End Here -->
-            <!-- Begin Li Banner Area -->
-
         </div>
     </div>
 </section>
 
 <!-- End Owl slider  -->
 <!-- Start Category Section -->
-<section>
+<section class="mt-4">
     
     <div class="container-fluid">
-        <div class="feature-h3 pb-2">
-            <h3>Product Category</h3>
+        <div class="feature-h5 pb-2">
+            <h5>Product Category</h5>
         </div>
         <div class="row">
             @foreach ($category as $item)
-            @if($item->SubCategory->count() == 0)
+            {{-- @if($item->SubCategory->count() == 0)
             <div class="col-lg-3 col-md-6 col-12 px-3 mb-2">
-                <a href="{{route('categoryWise.list',$item->slug)}}" class="row border">
-                
-                    <div class="col-lg-7 col-md-6 col-6">
+                <a href="{{route('categoryWise.list', $item->slug)}}" class="row">
+                    <div class="col-lg-12 col-md-12 col-6">
                         <div class="category-title  py-3">
                             <p class=" text-center mb-0">{{$item->name}}</p>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-6 col-6 text-center">
+                    <div class="col-lg-12 col-md-12 col-6 text-center">
                         <div class="category-img py-2">
                             <img src="{{ asset($item->image) }}" alt="" loading="lazy">
                         </div>
                     </div>
                 </a>
             </div>
-            @else 
-            <div class="col-lg-3 col-md-6 col-12 px-3 mb-2">
-                <a href="{{route('single.subcategory.list',$item->slug)}}" class="row border">
-                    <div class="col-lg-7 col-md-6 col-6">
-                        <div class="category-title  py-3">
-                            <p class=" text-center mb-0">{{$item->name}}</p>
+            @else  --}}
+            <div class="col-lg-2 col-md-6 col-6 px-3 mb-2">
+                <div style="box-shadow: 0px 0 3px #80808082;">
+                    <a href="{{route('single.subcategory.list',$item->slug)}}" class="row">
+                        <div class="col-lg-12 col-md-6 col-12 text-center">
+                            <div class="category-img py-2">
+                                <img src="{{ asset($item->image) }}" alt="" loading="lazy">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5 col-md-6 col-6 text-center">
-                        <div class="category-img py-2">
-                            <img src="{{ asset($item->image) }}" alt="" loading="lazy">
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <div class="category-title py-2" style="background-color:#03a84e;">
+                                <p class=" text-center mb-0">{{$item->name}}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-            @endif
-            
-            
+            {{-- @endif --}}
             @endforeach
             
         </div>
@@ -103,8 +112,8 @@
 <!-- Recent Product Section -->
 <section class="py-4">
     <div class="container-fluid">
-        <div class="feature-h3">
-            <h3>Recent Product</h3>
+        <div class="feature-h5">
+            <h5>Recent Product</h5>
         </div>
         <div class="row">
             @foreach ($recent as $item)
@@ -114,7 +123,7 @@
             $stock = $item->inventory->purchage;  
             $discount_price =$item->price - $item->price*$discount/100;  
             @endphp
-            <div class="lg-1 col-lg-2 col-md-6 col-6 ">
+            <div class="col-lg-2 col-md-6 col-6 ">
                     <div class="section-item">
                         <div class="main-card-body position-relative">
                              <img src="{{ asset('uploads/product/'.$item->image)}}" alt="" loading="lazy">
@@ -172,7 +181,7 @@
             <div class=" text-end">
                 <a href="{{route('all.product')}}" class="btn btn-warning fw-bolder" >View All</a>
             </div>
-            {{-- <div class="col-lg-2 col-md-6 col-12 ">
+            <!-- <div class="col-lg-2 col-md-6 col-12 ">
                 <div class="section-item">
                     <img src="{{ asset('website') }}/image/arrive;l-5.jpg" alt="">
                     <div class="product-price">
@@ -183,7 +192,7 @@
                         <a href="#" class="btn-details1 w-100">Add To Cart</a>
                     </div>
                 </div>
-            </div> --}}
+            </div> -->
         </div>
     </div>
 </section>
@@ -208,14 +217,14 @@
 <!-- End Banner Section -->
 
 <!-- Start Feature Product -->
-<section class="feature-section py-4">
+<section class="feature-section py-2">
     <div class="container-fluid">
-        <div class="feature-h3 ">
-            <h3 class="">Popular Product</h3>
+        <div class="feature-h5 ">
+            <h5 class="">Popular Product</h5>
         </div>
         <div class="row">
             @foreach ($popular as $item)
-            <div class="lg-1 col-lg-2 col-md-6 col-6 ">
+            <div class="col-lg-2 col-md-6 col-6 ">
                 <div class="section-item">
                     <div class="main-card-body position-relative">
                         @php
@@ -224,10 +233,8 @@
 
                          $stock = $item->inventory->purchage;
                          $discount_price =$item->price - $item->price*$discount/100; 
-                         // if($stock <1)
-                         // echo 'stock out';
+                         
                      @endphp
-                        {{-- <img src="{{ asset('website') }}/image/arrive;l-5.jpg" alt=""> --}}
                        <img src="{{ asset('uploads/product/thumbnail/'.$item->thum_image)}}" alt="">
                         @if ($item->discount != NULL)
                         <span class="discount position-absolute">{{(int)$discount}}%</span>
@@ -287,7 +294,7 @@
 <!-- End Feature Product -->
 <!-- Start Banner Section 2 -->
 <!-- Start Banner Section 2 -->
-<div class="banner-section-2">
+{{-- <div class="banner-section-2">
     <div class="container-fluid">
         <div class="row py-5 d-flex justify-content-center">
             <div class="get-offer">
@@ -296,17 +303,16 @@
             </div>
         </div>
     </div>
-</div>
-<!-- End New arrivel Section -->
+</div> --}}
 <!-- End New arrivel Section -->
 <section class="feature-section py-4">
     <div class="container-fluid">
-        <div class="feature-h3 ">
-            <h3 class=""> New Arrival</h3>
+        <div class="feature-h5 ">
+            <h5 class=""> New Arrival</h5>
         </div>
         <div class="row">
             @foreach ($new_arrival as $item)
-            <div class="lg-1 col-lg-2 col-md-6 col-6 ">
+            <div class="col-lg-2 col-md-6 col-6 ">
                 <div class="section-item">
                     <div class="main-card-body position-relative">
                         @php
@@ -315,10 +321,10 @@
 
                          $stock = $item->inventory->purchage;
                          $discount_price =$item->price - $item->price*$discount/100; 
-                         // if($stock <1)
+                         // if($stock < 1)
                          // echo 'stock out';
-                     @endphp
-                        {{-- <img src="{{ asset('website') }}/image/arrive;l-5.jpg" alt=""> --}}
+                        @endphp
+                        <!-- <img src="{{ asset('website') }}/image/arrive;l-5.jpg" alt=""> -->
                        <img src="{{ asset('uploads/product/'.$item->image)}}" alt="" loading="lazy">
                         @if ($item->discount != NULL)
                         <span class="discount position-absolute">{{(int)$discount}}%</span>

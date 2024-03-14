@@ -1,9 +1,9 @@
  <!-- Side-Nav -->
  <div class="side-navbar active-nav" id="sidebar">
-    <div class="menu-section ">
-        <div class="site-logo py-1">
-            <a href="{{ route('home') }}">{{$content->company_name}}</a>
-        </div>
+     <div class="site-logo py-1" style="position:fixed;left:0;right:0;height:47px;line-height:2">
+         <a href="{{ route('home') }}" style="text-transform: uppercase;font-size: 20px;font-weight:700;">{{$content->company_name}}</a>
+     </div>
+    <div class="menu-section " style="margin-top: 47.25px">
       <nav class="left-sidebar">
             <ul id="nav_accordion">
                 @foreach ($category as $item)
@@ -59,13 +59,25 @@
        
         <div class="container-fluid disply-responsive">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-8">
-                    <p class="mb-0 py-2"> &nbsp; <a id="sidebar-toggle-btn" class="menu-btn" ><i
-                        class="fas fa-bars text-white"></i></a> Onlline Shoping Site</p>
+                <div class="col-lg-3 col-md-3 col-8">
+                    <p class="mb-0 py-2"> &nbsp; 
+                        <a id="sidebar-toggle-btn" class="menu-btn" >
+                            <i style="font-size: 28px" class="fas fa-bars text-white"></i>
+                        </a>
+                    </p>
                 </div>
-                <div class="col-lg-6 col-md-6 col-4 d-flex justify-content-end ">
-                    <div class="justify-content-end google-translate" id="google_translate_element"></div>
-                    <p class="mb-0 py-2">Need Help?</p>
+                <div class="col-lg-9 col-md-9 col-4 d-flex justify-content-between ">
+                    {{-- <div class="justify-content-end google-translate" id="google_translate_element"></div>
+                    <p class="mb-0 py-2">Need Help?</p> --}}
+                    <div class="d-flex">
+                        <p class="mb-0 me-4 py-2" style="font-size: 14px;line-height:2;padding-top:10px!important;"><a style="color:#fff" href="{{route('home')}}"><i class="fas fa-home" style="margin-right:5px"></i>Home</a></p>
+                        <p class="mb-0 me-4 py-2" style="font-size: 14px;line-height:2;padding-top:10px!important;"><a style="color:#fff" href="{{route('about.website')}}"><i class="far fa-address-card" style="margin-right:5px"></i>About Us</a></p>
+                        <p class="mb-0 py-2" style="font-size: 14px;line-height:2;padding-top:10px!important;"><a style="color:#fff" href="{{route('web.contact')}}"><i class="far fa-address-book" style="margin-right:5px"></i>Contact Us</a></p>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <p class="mb-0 me-4 py-2" style="font-size: 14px;line-height:2;padding-top:10px!important;"><a style="color:#fff" href="mailto:{{$content->email}}"><i class="fas fa-envelope" style="margin-right:5px"></i>{{ $content->email }}</a></p>
+                        <p class="mb-0 py-2" style="font-size: 14px;line-height:2;padding-top:10px!important;"><a style="color:#fff" href="tel:{{$content->phone_1}}"><i class="fas fa-phone-alt" style="margin-right:5px"></i>{{ $content->phone_1 }}</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +117,7 @@
                     @if (Auth::guard('customer')->check())
                     <a href="{{route('customer.panel')}}"><i class="fas fa-user me-1"></i> My Account</a>
                     @else
-                    <a href="{{route('customer.signup')}}"><i class="fas fa-sign-in-alt me-1"></i>SignUp</a>
+                    <a href="{{route('customer.signup')}}"><i class="fas fa-user-plus me-1"></i>SignUp</a>
                     @endif
                 </li>
             </ul>
@@ -113,31 +125,25 @@
         <!--mobile cart bar start-->
             <ul class="top-20 bg-light m-auto w-100" id="m-cart-ul" style="z-index:9999999">
             
-            
             </ul>
-           
-          
-           
-
          
     </section>
     <!-- Start Mobile Menu -->
 
-  
     <!-- End Mobile Menu -->
-    <section class="sticky-top d-none d-md-block">
+    <section id="mainHeader" class="sticky-top d-none d-md-block ">
         <div class="container-fluid">
             <div class="row vertical-align">
                 <div class="col-lg-4 col-md-4 col-12 py-1">
                     <div class="header-logo d-flex"> 
-                        <a href="{{route('home')}}"><img src="{{ asset('website') }}/image/logo-4.png" alt=""> </a>
+                        <a href="{{route('home')}}"><img style="height:80px;margin-left:-35px;" src="{{ asset('/') }}{{ $content->logo }}" alt=""> </a>
                         <span
                             class="typed company-typed" id="typed"></span> </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-12  ">
                     <form action="{{route('search')}}" method="get">
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12 py-4 input-search d-flex">
+                        <div class="col-lg-12 col-md-12 col-12 py-2 input-search d-flex">
                             <form class="" action="{{ route('search') }}" method="GET">
                                 <input class="search-control keyword" type="text" name="q" placeholder="Search...">
                                 <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
@@ -154,22 +160,18 @@
                 <div class="col-lg-4 col-md-4 top-icon col-12 py-3 d-flex justify-content-center">
                   <div class="header-right-side d-flex ">
                       <div class="cart-part-header d-flex me-3">
-                            <div class="text-success position-relative" id="cart">Cart <i class="fas fa-cart-plus " id="navbar"></i>
-                                
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning " id="cartItemNumber">
-                                
+                            <div class="text-success position-relative" id="cart"><i class="fas fa-cart-plus " id="navbar"></i> Cart 
+                                <span style="top: -5px; right: 17px;height:20px;width:20px;line-height:1.5" class="position-absolute translate-middle badge rounded-pill bg-warning " id="cartItemNumber">
                             </div>
                             <ul class="cart-ul" id="cart-ul">
-                              
                             </ul>
-                            
                       </div>
                       
                       <div class="p-1 text-success me-3">
                           @if (Auth::guard('customer')->check())
-                          <a href="{{route('customerLogout')}}" onclick="return confirm('Are you sure logout?')">Logout </a>
+                          <a href="{{route('customerLogout')}}" onclick="return confirm('Are you sure logout?')"><i class="fas fa-sign-out-alt me-2"></i>Logout </a>
                           @else
-                          <a href="{{route('customer.login')}}" >login <i class="fas fa-user user-login"></i></a>
+                          <a href="{{route('customer.login')}}" ><i class="fas fa-sign-in-alt me-2"></i>login </a>
 
                           @endif
                          
@@ -177,9 +179,9 @@
                       <div class="text-success me-3">
                           
                           @if (Auth::guard('customer')->check())
-                          <a href="{{route('customer.panel')}}">My Account</a>
+                          <a href="{{route('customer.panel')}}"><i class="fas fa-user me-2"></i> My Account</a>
                           @else
-                          <a href="{{route('customer.signup')}}">SignUp</a>
+                          <a href="{{route('customer.signup')}}"><i class="fas fa-user-plus me-2"></i>SignUp</a>
                           @endif
                           
                       </div>
@@ -193,7 +195,7 @@
             </div>
         </div>
         <!-- Start Menu Section -->
-        <section class="container-fluid d-none d-sm-block">
+        {{-- <section class="container-fluid d-none d-sm-block">
             <div class="main-menu">
                 <nav class="navbar navbar-expand-md ">
                     <div class="container-fluid">
@@ -216,7 +218,7 @@
                     </div>
                 </nav>
             </div>
-        </section>
+        </section> --}}
         <!-- End Menu Section -->
 
        

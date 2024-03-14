@@ -73,7 +73,7 @@ class BannerController extends Controller
     $banner->offer_link = $request->offer_link;
     if ($request->hasFile('image')) {
       @unlink($banner->image);
-      $banner->image = $this->imageUpload($request, 'image', 'uploads/category');
+      $banner->image = $this->imageUpload($request, 'image', 'uploads/banner');
     }
     // $banner->image= $this->imageUpload($request, 'image', 'uploads/banner');
     $banner->save_by = 1;

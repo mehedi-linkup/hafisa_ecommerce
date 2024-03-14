@@ -205,7 +205,7 @@ class CheckoutController extends Controller
                 
                     if(in_array($value->id, $offer_product)){
                         
-                        if(in_array($value->id,$exist_order_tables)){
+                        if(in_array($value->id, $exist_order_tables)){
                             $price = $value->price* $value->quantity;
                             $orderDetails = new OrderDetails();
                             $orderDetails->order_id = $order->id;
@@ -227,7 +227,7 @@ class CheckoutController extends Controller
                         }
                         else{
                             // dd('nai');
-                            if($value->quantity >1){
+                            if($value->quantity > 1){
                                 
                                 $discount_product = Product::where('id',$value->id)->first();
                                 // dd($value);
@@ -319,16 +319,17 @@ class CheckoutController extends Controller
                 $customer_id = Auth::guard('customer')->user()->code;
                 $msg = " Order submit  $name . Invoice No. $order->invoice_no";
                 $message = "$name .Your order submited successfully. Invoice No. $order->invoice_no";
-                $this->send_sms($admin_phone , $msg);
-                $this->send_sms($admin_phone_2 , $msg);
-                $this->send_sms($admin_phone_3 , $msg);
+                // $this->send_sms($admin_phone , $msg);
+                // $this->send_sms($admin_phone_2 , $msg);
+                // $this->send_sms($admin_phone_3 , $msg);
                 $this->send_sms($customer_phone , $message);
                     
             
                 DB::commit();
                 Session::flash('message', 'order Submit successfully');
                 \Cart::clear();
-                return redirect()->route('home');
+
+                return redirect()->route('customer.panel');
 
             } 
             catch (Exception $e) {

@@ -69,7 +69,7 @@ class ProductController extends Controller
             'color_id' => 'max:3',
             // 'sub_category_id' => 'required',
             'price' => 'required|max:10|regex:/^\d+(\.\d{1,2})?$/',
-            'image' => 'required|image|mimes:jpg,png,gif,bmp|max:500',
+            'image' => 'required|image|mimes:jpg,png,gif,bmp,webp|max:500',
             'otherImage' => 'max:500',
             'purchage' => 'required|min:1|max:10',
         ]);

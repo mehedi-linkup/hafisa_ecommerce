@@ -84,7 +84,6 @@ Route::get('/get_suggestions/{k}', [HomeController::class, 'getSearchSuggestions
 Route::get('/search', [HomeController::class, 'productSearch'])->name('search');
 
 
-
 // User Login
 Route::get('/customer', [CustomerCustomerController::class, 'customer'])->name('customer.login');
 Route::get('/customer/signUp', [CustomerCustomerController::class, 'signUp'])->name('customer.signup');
@@ -153,16 +152,16 @@ Route::group(['middleware' => ['auth','userLoginCheck']] , function(){
     // customer prefix
     Route::prefix('customer')->group(function(){
         //customer route
-            Route::get('customer',[CustomerController::class,'index'])->name('customer')->middleware('check');
-            Route::get('customer/all',[CustomerController::class,'allData'])->name('customer.all')->middleware('check');
-            Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
-            Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit')->middleware('check');
-            Route::post('customer/update/',[CustomerController::class,'update'])->name('customer.update');
-            Route::get('customer/delete/{id}',[CustomerController::class,'destroy'])->name('customer.delete');
-            Route::get('/pending/customer',[CustomerController::class,'pending'])->name('customer.pending')->middleware('check');
-            Route::get('/customer-list',[CustomerController::class,'customerList'])->name('customer.list')->middleware('check');
-            Route::get('/active/customer/{id}',[CustomerController::class,'customerActive'])->name('customer.active');
-            Route::get('/deactive/customer/{id}',[CustomerController::class,'customerDeactive'])->name('customer.deactive');
+        Route::get('customer',[CustomerController::class,'index'])->name('customer')->middleware('check');
+        Route::get('customer/all',[CustomerController::class,'allData'])->name('customer.all')->middleware('check');
+        Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
+        Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit')->middleware('check');
+        Route::post('customer/update/',[CustomerController::class,'update'])->name('customer.update');
+        Route::get('customer/delete/{id}',[CustomerController::class,'destroy'])->name('customer.delete');
+        Route::get('/pending/customer',[CustomerController::class,'pending'])->name('customer.pending')->middleware('check');
+        Route::get('/customer-list',[CustomerController::class,'customerList'])->name('customer.list')->middleware('check');
+        Route::get('/active/customer/{id}',[CustomerController::class,'customerActive'])->name('customer.active');
+        Route::get('/deactive/customer/{id}',[CustomerController::class,'customerDeactive'])->name('customer.deactive');
        
     });
 
