@@ -6,7 +6,7 @@
                     <a style="display: inline-block;width:100px;" href="{{route('home')}}"><img style="width: 100%" src="{{ asset('/') }}{{ $content->logo }}" alt=""></a>
                     <span style="color:#fff;display:inline-block">{{ $content->company_name }}</span>
                 </div>
-                <div style="font-size:12px;color:#fff;margin-top:10px">{!! Str::of($content->about_description)->words(25) !!}</div>
+                <div style="font-size:13px;color:#fff;margin-top:10px">{!! Str::of($content->about_description)->words(25) !!}</div>
             </div>
             <div class="col-lg-3 col-md-3 col-6">
                 <h1 class="fs-6 text-white">Information Link</h1>

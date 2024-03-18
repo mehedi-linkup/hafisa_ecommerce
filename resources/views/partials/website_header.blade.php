@@ -112,7 +112,7 @@
                     <a href="{{route('customer.login')}}"><i class="fas fa-sign-in-alt me-1"></i> login </a>
                     @endif
                 </li>
-                <li class="d-flex"><i class="fas fa-language"></i><span id="google_translate_element"></span></li>
+                {{-- <li class="d-flex"><i class="fas fa-language"></i><span id="google_translate_element"></span></li> --}}
                 <li class="">
                     @if (Auth::guard('customer')->check())
                     <a href="{{route('customer.panel')}}"><i class="fas fa-user me-1"></i> My Account</a>
