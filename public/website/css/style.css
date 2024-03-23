@@ -471,10 +471,10 @@ table, th, td {
   color: #007236;
   font-size: 13px;
   font-weight: 900;
-  /* background-color: #efb605; */
   text-align: center;
   border: 1px solid;
-  border-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 
 .btn-details1:hover {
@@ -636,16 +636,16 @@ table, th, td {
 }
 
 .category-img img {
-  width: 80%;
-  height: 140px;
+  width: 100%;
+  height: 80px;
   object-fit: contain;
 }
 
 .category-title p {
-  font-size: 14px;
+  font-size: 12px;
   color: #fff;
-  font-family: serif;
-  text-transform: uppercase;
+  /* font-family: serif;
+  text-transform: uppercase; */
 }
 /* End Category Section */
 
@@ -899,6 +899,8 @@ div#sidebar {
 /* new section */
 .main-card-body{
   position: relative;
+  border: 1px solid #03a84e33;
+  border-bottom: none;
   transition: all .5s ease-in-out;
 }
 .overlay-1{
@@ -1313,10 +1315,15 @@ button.btn-search {
   right: 18px;
 }
 @media (min-width:1200px) {
+  .lg-0 {
+    width: 10%;
+    flex: 0 0 auto;
+    /* padding: 5px; */
+  }
   .lg-1{
     width: 12.5%;
     flex: 0 0 auto;
-    padding: 5px;
+    /* padding: 5px; */
   }
   .btn-details1{
     font-size: 12px;

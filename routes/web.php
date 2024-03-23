@@ -198,8 +198,6 @@ Route::group(['middleware' => ['auth','userLoginCheck']] , function(){
   
     Route::get('/product/delete/{id}',[OrderController::class,'orderProductDelete'])->name('order.product.delete');
     
-
-    
     Route::prefix('product')->group(function(){
         // category route
         Route::get('/category',[CategoryController::class,'index'])->name('category.index')->middleware('check');

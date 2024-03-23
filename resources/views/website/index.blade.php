@@ -70,7 +70,7 @@
         <div class="row">
             @foreach ($category as $item)
             @if($item->SubCategory->count() == 0)
-            <div class="col-lg-2 col-md-6 col-6 px-3 mb-2">
+            <div class="lg-0 col-md-6 col-6 mb-2">
                 <div style="box-shadow: 0px 0 3px #80808082;">
                     <a href="{{route('categoryWise.list', $item->slug)}}" class="row">
                         <div class="col-lg-12 col-md-6 col-12 text-center">
@@ -79,15 +79,15 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6 col-12">
-                            <div class="category-title py-2" style="background-color:#03a84e;">
-                                <p class=" text-center mb-0">{{$item->name}}</p>
+                            <div class="category-title py-1" style="background-color:#03a84e;">
+                                <p class=" text-center mb-0">{{ Str::limit($item->name, 12, '...') }}</p>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
             @else 
-            <div class="col-lg-2 col-md-6 col-6 px-3 mb-2">
+            <div class="lg-0 col-md-6 col-6 mb-2">
                 <div style="box-shadow: 0px 0 3px #80808082;">
                     <a href="{{route('single.subcategory.list', $item->slug)}}" class="row">
                         <div class="col-lg-12 col-md-6 col-12 text-center">
@@ -96,8 +96,8 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6 col-12">
-                            <div class="category-title py-2" style="background-color:#03a84e;">
-                                <p class=" text-center mb-0">{{$item->name}}</p>
+                            <div class="category-title py-1" style="background-color:#03a84e;">
+                                <p class=" text-center mb-0">{{ Str::limit($item->name, 12, '...') }}</p>
                             </div>
                         </div>
                     </a>
