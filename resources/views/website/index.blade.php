@@ -70,7 +70,7 @@
         <div class="row">
             @foreach ($category as $item)
             @if($item->SubCategory->count() == 0)
-            <div class="lg-0 col-md-6 col-6 mb-2">
+            <div class="col-lg-2 col-md-6 col-6 mb-2">
                 <div style="box-shadow: 0px 0 3px #80808082;">
                     <a href="{{route('categoryWise.list', $item->slug)}}" class="row">
                         <div class="col-lg-12 col-md-6 col-12 text-center">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6 col-12">
-                            <div class="category-title py-1" style="background-color:#03a84e;">
+                            <div class="category-title py-2" style="background-color:#03a84e;">
                                 <p class=" text-center mb-0">{{ Str::limit($item->name, 12, '...') }}</p>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                 </div>
             </div>
             @else 
-            <div class="lg-0 col-md-6 col-6 mb-2">
+            <div class="col-lg-2 col-md-6 col-6 mb-2">
                 <div style="box-shadow: 0px 0 3px #80808082;">
                     <a href="{{route('single.subcategory.list', $item->slug)}}" class="row">
                         <div class="col-lg-12 col-md-6 col-12 text-center">
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6 col-12">
-                            <div class="category-title py-1" style="background-color:#03a84e;">
+                            <div class="category-title py-2" style="background-color:#03a84e;">
                                 <p class=" text-center mb-0">{{ Str::limit($item->name, 12, '...') }}</p>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
             $stock = $item->inventory->purchage;  
             $discount_price =$item->price - $item->price*$discount/100;  
             @endphp
-            <div class="col-lg-2 col-md-6 col-6 ">
+            <div class="lg-2 col-md-6 col-6 ">
                     <div class="section-item">
                         <div class="main-card-body position-relative">
                              <img src="{{ asset('uploads/product/'.$item->image)}}" alt="" loading="lazy">
@@ -183,7 +183,7 @@
             <div class=" text-end">
                 <a href="{{route('all.product')}}" class="btn btn-warning fw-bolder" >View All</a>
             </div>
-            <!-- <div class="col-lg-2 col-md-6 col-12 ">
+            <!-- <div class="lg-2 col-md-6 col-12 ">
                 <div class="section-item">
                     <img src="{{ asset('website') }}/image/arrive;l-5.jpg" alt="">
                     <div class="product-price">
@@ -226,7 +226,7 @@
         </div>
         <div class="row">
             @foreach ($popular as $item)
-            <div class="col-lg-2 col-md-6 col-6 ">
+            <div class="lg-2 col-md-6 col-6 ">
                 <div class="section-item">
                     <div class="main-card-body position-relative">
                         @php
@@ -314,7 +314,7 @@
         </div>
         <div class="row">
             @foreach ($new_arrival as $item)
-            <div class="col-lg-2 col-md-6 col-6 ">
+            <div class="lg-2 col-md-6 col-6 ">
                 <div class="section-item">
                     <div class="main-card-body position-relative">
                         @php

@@ -22,7 +22,7 @@
                     $stock = $item->inventory->purchage;
                     $discount_price =$item->price - $item->price*$discount/100; 
                     @endphp
-                <div class="col-lg-2 col-md-6 col-6 ">
+                <div class="lg-2 col-md-6 col-6 ">
                     <div class="section-item">
                         <div class="main-card-body position-relative">
                             <img src="{{ asset('uploads/product/'.$item->image)}}" alt="">
