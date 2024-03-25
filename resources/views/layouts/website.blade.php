@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/animate.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/all.min.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('website/css/slider.css') }}">
@@ -382,13 +381,21 @@ $('.owl-carousel').owlCarousel({
                 type:"get",
                 dataType: "json",
                 success:function(res){
+                    
                     cartAllData();
                     $('#details-btn'+id).show();
                     $('#addCart'+id).hide();
+
+                    toastr.options =
+                        {
+                            "closeButton" : true,
+                            "progressBar" : true
+                        }
+                    toastr.success("Item added to cart");
                 }
             })
-        var overlay_1 = $('.overlay-1'+id).hide();
-        $('.overlay-2'+id).show();
+        // var overlay_1 = $('.overlay-1'+id).hide();
+        // $('.overlay-2'+id).show();
         $('#increment_decrement_part').show();
     }
 
@@ -402,11 +409,17 @@ function deleteCard(id){
         console.log(url);
         $.ajax({
                     url:url,
-                type:"get",
-                dataType: "json",
-                success:function(res){
-                    cartAllData();
-                }
+                    type:"get",
+                    dataType: "json",
+                    success:function(res){
+                        cartAllData();
+                        toastr.options =
+                        {
+                            "closeButton" : true,
+                            "progressBar" : true
+                        }
+                        toastr.success("Item removed from cart");
+                    }
             })
     }
     }

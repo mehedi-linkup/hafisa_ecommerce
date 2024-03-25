@@ -130,7 +130,7 @@
         </div>
         <div class="row">
             @foreach ($related as $item)
-            <div class="lg-1 col-lg-2 col-md-6 col-6 ">
+            <div class="lg-2 col-lg-2 col-md-6 col-6 ">
                 <div class="section-item">
                     <div class="main-card-body position-relative">
                         @php
@@ -138,19 +138,17 @@
                             $discount = $item->discount;
 
                          $stock = $item->inventory->purchage;
-                         $discount_price =$item->price - $item->price*$discount/100; 
-                         // if($stock <1)
-                         // echo 'stock out';
-                     @endphp
-                        {{-- <img src="{{ asset('website') }}/image/arrive;l-5.jpg" alt=""> --}}
+                         $discount_price = $item->price - $item->price * $discount / 100; 
+                        
+                        @endphp
                        <img src="{{ asset('uploads/product/thumbnail/'.$item->thum_image)}}" alt="">
                         @if ($item->discount != NULL)
                         <span class="discount position-absolute">{{(int)$discount}}%</span>
                         @endif
                         <div class="product-price">
                             <h6 class="text-center fw-bolder mt-2 mb-0">{{$item->name}}</h6>
-                            @if($item->discount >0)
-                            <p class="text-center"> <span class="text-danger mx-2">{{$discount_price}} TK</span><span class=" text-decoration-line-through">{{$item->price}} TK</span></p>
+                            @if($item->discount > 0)
+                            <p class="text-center"> <span class="text-danger mx-2">{{ $discount_price }} TK</span><span class=" text-decoration-line-through">{{ $item->price }} TK</span></p>
                             @else 
                             <p class="text-center fw-bold mb-1">{{$item->price}} TK</p>
                             @endif
@@ -163,13 +161,16 @@
                                 <h5>Stock Out</h5>
                             </div>
                             @else
-                            <div class="add-to-cart-part add" onclick="addToCard({{$item->id}})">
-                                <h5>Add To Shopping Card</h5>
+                            <div class="add-to-cart-part add">
+                                {{-- <h5>Add To Shopping Card</h5> --}}
+                                <h5>
+                                    <a href="{{route('product.details', $item->slug)}}" class="product-detail ">Details</a>
+                                </h5>
                             </div>
                             @endif
-                            <div class="view-btn position-absolute bottom-0 w-100 text-center details-btn">
-                                <a href="{{route('product.details',$item->slug)}}" class="text-center text-dark ">Details</a>
-                            </div>
+                            {{-- <div class="view-btn position-absolute bottom-0 w-100 text-center details-btn">
+                                <a href="{{route('product.details', $item->slug)}}" class="text-center text-dark ">Details</a>
+                            </div> --}}
                         </div>
                         <div class="overlay-2 overlay-2{{$item->id}}">
                             <h5 class="text-center pt-3 text-white">{{$item->price}} TK</h5>
@@ -184,7 +185,7 @@
                         </div>
                        
                     </div>
-                    @if ($stock<1)
+                    @if ($stock < 1)
                     <div class="d-flex mb-3">
                         <a  href="javascript:void(0);" class="btn-details1 w-100" >Stock Out</a>
                     </div>

@@ -18,7 +18,9 @@
                     @if ($item->SubCategory->count() > 0)
                     <ul id="menu_item{{$item->id}}" class=" mb-0 collapse" data-bs-parent="#nav_accordion">
                         @foreach ($item->SubCategory as $i)
-                        <li> <img src="{{ asset($i->image) }}" alt="" loading="lazy" class="mx-2"><a href="{{route('SubCategoryWise.list',$i->slug)}}">{{$i->name}} </a></li> 
+                        <li> 
+                            {{-- <img src="{{ asset($i->image) }}" alt="" loading="lazy" class="mx-2"> --}}
+                            <a style="padding-left: 15px" href="{{route('SubCategoryWise.list',$i->slug)}}">{{$i->name}} </a></li> 
                         @endforeach
                         
                     </ul>
@@ -179,7 +181,7 @@
                       <div class="text-success me-3">
                           
                           @if (Auth::guard('customer')->check())
-                          <a href="{{route('customer.panel')}}"><i class="fas fa-user me-2"></i> My Account</a>
+                          <a href="{{route('customer.panel')}}"><i class="fas fa-user me-2"></i> My Account </a>
                           @else
                           <a href="{{route('customer.signup')}}"><i class="fas fa-user-plus me-2"></i>SignUp</a>
                           @endif
